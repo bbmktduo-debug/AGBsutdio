@@ -1,5 +1,27 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# AGENTS.md — 스튜디오에그비 웹사이트 에이전트 규칙
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+> 이 파일은 짧게 유지한다. 정말 중요한 것만 둬야 집중된다.
+
+## 절대 규칙 (하면 안 되는 것)
+
+- **시크릿 노출 금지.** Sanity 토큰, Resend API 키 등은 `.env.local` / Vercel 환경변수로만. 코드·커밋·로그에 절대 넣지 않는다.
+- **Sanity 스키마 임의 변경 금지.** 필드명/타입 변경은 기존 콘텐츠 손실로 이어질 수 있다. 스키마 수정이 필요하면 먼저 사람에게 확인한다.
+- **자동 배포·푸시 금지.** `git push`, 프로덕션 배포는 사람이 직접 트리거한다.
+- **프로덕션 콘텐츠에 테스트 데이터 금지.** 더미·테스트 작업물을 실제 Sanity 데이터셋에 넣지 않는다.
+- **디자인 토큰 임의 생성 금지.** 새 색상 hex, 새 폰트, 임의 간격값을 만들지 않는다. 모든 시각 값은 DESIGN.md를 따른다.
+
+## 작업 규칙 (반드시 지킬 것)
+
+- **디자인은 DESIGN.md가 단일 기준.** UI를 만들기 전에 DESIGN.md의 색/타이포/간격/컴포넌트 규칙을 따른다.
+- **국문 단일.** UI 텍스트·콘텐츠는 한국어. 영문은 디스플레이용 고정 문구(슬로건, 라벨 등)에만 의도적으로 사용한다.
+- **영상은 YouTube 임베드만.** 자체 호스팅/업로드 구현하지 않는다.
+- **콘텐츠는 Sanity에서 가져온다.** 작업물·에디토리얼을 코드에 하드코딩하지 않는다.
+- **커밋 메시지는 한국어**로 간결하게.
+
+## 코드 스타일
+
+- **서버 컴포넌트 우선.** 클라이언트 컴포넌트(`'use client'`)는 인터랙션이 필요한 곳(필터·모션·폼)에만.
+- **이미지는 next/image**로. 외부 이미지는 `next.config`에 도메인 등록.
+- **시맨틱 마크업 + 접근성.** 의미 있는 태그, 이미지 `alt`, 키보드 내비 보장.
+- **반응형은 모바일 우선.** 모바일에서 먼저 동작하게 만들고 데스크톱으로 확장.
+- **TypeScript strict.** 타입을 명확히, `any` 지양.

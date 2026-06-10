@@ -2,7 +2,7 @@ import { getWork } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
+import { PortableText, type PortableTextBlock } from "@portabletext/react";
 
 type Work = {
   _id: string;
@@ -12,7 +12,7 @@ type Work = {
   category: string;
   youtubeUrl?: string;
   year?: number;
-  description?: unknown[];
+  description?: PortableTextBlock[];
   stills?: { asset: { _ref: string } }[];
   featured?: boolean;
 };

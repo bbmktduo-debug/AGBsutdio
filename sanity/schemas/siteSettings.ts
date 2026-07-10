@@ -6,11 +6,24 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "heroVideos",
+      title: "히어로 배경 영상 (복수)",
+      type: "array",
+      of: [
+        {
+          type: "file",
+          options: { accept: "video/mp4" },
+        },
+      ],
+      description: "메인 히어로에 순서대로 자동재생될 배경 영상들 (MP4)",
+    }),
+    defineField({
       name: "heroVideo",
-      title: "히어로 배경 영상 (MP4)",
+      title: "히어로 배경 영상 (레거시, 단일)",
       type: "file",
       options: { accept: "video/mp4" },
-      description: "메인 히어로에 자동재생될 배경 영상 파일 (짧은 쇼릴 권장)",
+      description: "기존 단일 영상 필드 — 위 복수 필드를 우선 사용합니다",
+      hidden: true,
     }),
     defineField({
       name: "heroVideoUrl",

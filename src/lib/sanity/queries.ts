@@ -5,7 +5,8 @@ export async function getSiteSettings() {
   return client.fetch(
     `*[_type == "siteSettings"][0] {
       heroVideoUrl,
-      "heroVideoFile": heroVideo.asset->url
+      "heroVideoFile": heroVideo.asset->url,
+      "heroVideoFiles": heroVideos[].asset->url
     }`
   );
 }
@@ -39,7 +40,7 @@ export async function getFeaturedWorks() {
   );
 }
 
-/* ── Story ── */
+/* ── Story (레거시, 유지) ── */
 export async function getStories() {
   return client.fetch(
     `*[_type == "story" && published == true] | order(publishedAt desc) {
@@ -52,6 +53,41 @@ export async function getStory(slug: string) {
   return client.fetch(
     `*[_type == "story" && slug.current == $slug][0] {
       _id, title, slug, coverImage, publishedAt, body
+    }`,
+    { slug }
+  );
+}
+
+/* ── Note ── */
+export async function getNoteCategories() {
+  return client.fetch(
+    `*[_type == "noteCategory"] | order(sortOrder asc) {
+      _id, name, slug, color
+    }`
+  );
+}
+
+export async function getNotes(categorySlug?: string) {
+  const filter = categorySlug
+    ? `&& category->slug.current == $categorySlug`
+    : "";
+  return client.fetch(
+    `*[_type == "note" && published == true ${filter}] | order(publishedAt desc) {
+      _id, title, slug, thumbnail, publishedAt,
+      "categoryName": category->name,
+      "categoryColor": category->color,
+      "categorySlug": category->slug.current
+    }`,
+    categorySlug ? { categorySlug } : {}
+  );
+}
+
+export async function getNote(slug: string) {
+  return client.fetch(
+    `*[_type == "note" && slug.current == $slug][0] {
+      _id, title, slug, thumbnail, publishedAt, body,
+      "categoryName": category->name,
+      "categoryColor": category->color
     }`,
     { slug }
   );

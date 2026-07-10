@@ -8,6 +8,7 @@ import { useState } from "react";
 const NAV_ITEMS = [
   { label: "ABOUT", href: "/about" },
   { label: "WORKS", href: "/work" },
+  { label: "NOTES", href: "/notes" },
   { label: "CONTACT", href: "/contact" },
 ];
 
@@ -17,23 +18,28 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg">
-      {/* 로고 영역 */}
-      <div className="container-page flex justify-center py-5">
+      {/* 로고(좌) + 슬로건(우) */}
+      <div className="container-page flex items-center justify-between py-5">
         <Link href="/">
           <Image
             src="/logo.png"
             alt="Studio EGB"
-            width={180}
-            height={40}
+            width={288}
+            height={62}
             className="h-8 md:h-10 w-auto"
             priority
           />
         </Link>
 
+        {/* 데스크톱: 슬로건 우측 */}
+        <p className="hidden md:block font-display text-[15px] font-bold tracking-[0.02em] text-ink">
+          브랜드에서 시작되는 이야기
+        </p>
+
         {/* 모바일 햄버거 */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden absolute right-5 top-5 w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+          className="md:hidden w-8 h-8 flex flex-col justify-center items-center gap-1.5"
           aria-label="메뉴 열기"
         >
           <span

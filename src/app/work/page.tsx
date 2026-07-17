@@ -15,6 +15,13 @@ type Work = {
   featured?: boolean;
 };
 
+const CATEGORY_COLORS: Record<string, { bg: string; hover: string }> = {
+  documentary: { bg: "bg-accent-doc", hover: "hover:bg-accent-doc/20" },
+  social: { bg: "bg-accent-social", hover: "hover:bg-accent-social/20" },
+  branded: { bg: "bg-accent-branded", hover: "hover:bg-accent-branded/20" },
+  etc: { bg: "bg-accent-etc", hover: "hover:bg-accent-etc/20" },
+};
+
 export const revalidate = 60;
 
 export default async function WorkPage({
@@ -28,7 +35,7 @@ export default async function WorkPage({
   return (
     <>
       {/* 헤드라인 */}
-      <section className="pt-32 md:pt-40 pb-8">
+      <section className="pt-28 md:pt-36 pb-6">
         <div className="container-page">
           <h1 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-tight">
             WORKS
@@ -42,7 +49,7 @@ export default async function WorkPage({
       </div>
 
       {/* 필터 */}
-      <section className="py-6">
+      <section className="py-4">
         <div className="container-page">
           <CategoryFilter current={category} />
         </div>
@@ -54,57 +61,54 @@ export default async function WorkPage({
       </div>
 
       {/* 그리드 */}
-      <section className="py-12 md:py-16">
+      <section className="py-8 md:py-12">
         <div className="container-page">
           {works.length === 0 ? (
-            <div className="py-20 text-center">
+            <div className="py-16 text-center">
               <p className="text-ink/30">등록된 작업물이 없습니다.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10">
-              {works.map((work) => (
-                <Link
-                  key={work._id}
-                  href={`/work/${work.slug.current}`}
-                  className="group bg-bg p-5 md:p-6"
-                >
-                  <div className="aspect-video overflow-hidden bg-ink/5 mb-4">
-                    {work.thumbnail ? (
-                      <Image
-                        src={urlFor(work.thumbnail)
-                          .width(600)
-                          .height(338)
-                          .url()}
-                        alt={work.title}
-                        width={600}
-                        height={338}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-ink/15">
-                        No Image
-                      </div>
-                    )}
-                  </div>
-                  <h3 className="font-semibold text-[15px]">{work.title}</h3>
-                  <div className="flex items-center gap-2 mt-1.5">
-                    {work.client && (
-                      <span className="text-sm text-ink/40">{work.client}</span>
-                    )}
-                    <span
-                      className={`text-[11px] px-2.5 py-0.5 rounded-full ${
-                        work.category === "documentary"
-                          ? "bg-accent-doc"
-                          : work.category === "social"
-                            ? "bg-accent-social"
-                            : "bg-accent-branded"
-                      }`}
-                    >
-                      {work.category}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+              {works.map((work) => {
+                const colors = CATEGORY_COLORS[work.category] || CATEGORY_COLORS.etc;
+                return (
+                  <Link
+                    key={work._id}
+                    href={`/work/${work.slug.current}`}
+                    className={`group bg-bg p-4 md:p-5 transition-colors duration-300 ${colors.hover}`}
+                  >
+                    <div className="aspect-video overflow-hidden bg-ink/5 mb-3">
+                      {work.thumbnail ? (
+                        <Image
+                          src={urlFor(work.thumbnail)
+                            .width(600)
+                            .height(338)
+                            .url()}
+                          alt={work.title}
+                          width={600}
+                          height={338}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-ink/15">
+                          No Image
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="font-semibold text-[15px]">{work.title}</h3>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      {work.client && (
+                        <span className="text-sm text-ink/40">{work.client}</span>
+                      )}
+                      <span
+                        className={`text-[11px] px-2.5 py-0.5 rounded-full ${colors.bg}`}
+                      >
+                        {work.category}
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

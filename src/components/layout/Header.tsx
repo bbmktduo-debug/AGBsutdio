@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg">
-      {/* 로고(좌) + 슬로건(우) */}
+      {/* 로고(좌) + Contact 버튼(우) */}
       <div className="container-page flex items-center justify-between py-5">
         <Link href="/">
           <Image
@@ -31,10 +31,17 @@ export default function Header() {
           />
         </Link>
 
-        {/* 데스크톱: 슬로건 우측 */}
-        <p className="hidden md:block font-display text-[15px] font-bold tracking-[0.02em] text-ink">
-          브랜드에서 시작되는 이야기
-        </p>
+        {/* 데스크톱: Contact 버튼 (눈에 띄게) */}
+        <a
+          href="mailto:contact@studio-egb.com"
+          className="hidden md:inline-flex items-center gap-2 font-display text-[13px] font-semibold tracking-[0.06em] uppercase px-5 py-2 bg-ink text-bg hover:bg-ink/80 transition-colors duration-200"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-etc opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-etc" />
+          </span>
+          CONTACT
+        </a>
 
         {/* 모바일 햄버거 */}
         <button
@@ -94,6 +101,17 @@ export default function Header() {
                 {label}
               </Link>
             ))}
+            {/* 모바일 Contact 버튼 */}
+            <a
+              href="mailto:contact@studio-egb.com"
+              className="inline-flex items-center gap-2 font-display text-sm tracking-[0.08em] uppercase px-6 py-2.5 bg-ink text-bg mt-2"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-etc opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-etc" />
+              </span>
+              CONTACT
+            </a>
           </div>
         </nav>
       )}

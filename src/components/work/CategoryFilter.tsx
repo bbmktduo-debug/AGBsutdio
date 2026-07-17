@@ -7,6 +7,7 @@ const CATEGORIES = [
   { label: "DOCUMENTARY", value: "documentary", color: "bg-accent-doc" },
   { label: "SOCIAL", value: "social", color: "bg-accent-social" },
   { label: "BRANDED", value: "branded", color: "bg-accent-branded" },
+  { label: "ETC", value: "etc", color: "bg-accent-etc" },
 ];
 
 export default function CategoryFilter({
@@ -27,7 +28,7 @@ export default function CategoryFilter({
             className={`font-display text-xs tracking-[0.08em] uppercase px-4 py-2 rounded-full transition-all duration-200 ${
               isActive
                 ? `${color || "bg-ink text-on-dark"} ${color ? "text-ink font-semibold" : ""}`
-                : "text-ink/40 hover:text-ink border border-ink/15 hover:border-ink/40"
+                : `text-ink/40 hover:text-ink border border-ink/15 hover:border-ink/40 ${color ? `hover:${color}` : ""}`
             }`}
           >
             {label}

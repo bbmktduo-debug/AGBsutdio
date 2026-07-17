@@ -37,9 +37,9 @@ export default async function NotesPage({
 
   return (
     <>
-      <section className="pt-32 md:pt-40 pb-8">
+      <section className="pt-28 md:pt-36 pb-6">
         <div className="container-page">
-          <h1 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-tight mb-10">
+          <h1 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-tight mb-6">
             NOTES
           </h1>
 
@@ -57,7 +57,7 @@ export default async function NotesPage({
         <div className="border-b border-ink" />
       </div>
 
-      <section className="py-12 md:py-16">
+      <section className="py-8 md:py-12">
         <div className="container-page">
           {notes.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -67,7 +67,7 @@ export default async function NotesPage({
                   href={`/notes/${note.slug.current}`}
                   className="group"
                 >
-                  <div className="aspect-video overflow-hidden bg-ink/5 mb-4">
+                  <div className="aspect-video overflow-hidden bg-ink/5 mb-3">
                     {note.thumbnail ? (
                       <Image
                         src={urlFor(note.thumbnail)

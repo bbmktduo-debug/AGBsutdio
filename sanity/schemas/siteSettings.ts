@@ -11,11 +11,32 @@ export default defineType({
       type: "array",
       of: [
         {
-          type: "file",
-          options: { accept: "video/mp4" },
+          type: "object",
+          fields: [
+            defineField({
+              name: "video",
+              title: "영상 파일",
+              type: "file",
+              options: { accept: "video/mp4" },
+            }),
+            defineField({
+              name: "linkedWork",
+              title: "연결된 작업물",
+              type: "reference",
+              to: [{ type: "work" }],
+              description: "클릭 시 이동할 작업물 (선택)",
+            }),
+          ],
+          preview: {
+            select: { title: "linkedWork.title" },
+            prepare: ({ title }) => ({
+              title: title || "연결 없음",
+            }),
+          },
         },
       ],
-      description: "메인 히어로에 순서대로 자동재생될 배경 영상들 (MP4)",
+      description:
+        "메인 히어로에 순서대로 자동재생될 배경 영상들 (MP4). 각 영상에 작업물을 연결하면 클릭 시 해당 페이지로 이동합니다.",
     }),
     defineField({
       name: "heroVideo",

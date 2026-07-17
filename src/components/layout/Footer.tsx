@@ -12,8 +12,8 @@ export default function Footer() {
             <Image
               src="/logo.png"
               alt="Studio EGB"
-              width={288}
-              height={62}
+              width={2881}
+              height={624}
               className="h-7 w-auto invert"
             />
             <div className="flex gap-6">

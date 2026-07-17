@@ -32,6 +32,7 @@ export default defineType({
           { title: "Documentary", value: "documentary" },
           { title: "Social", value: "social" },
           { title: "Branded", value: "branded" },
+          { title: "Etc", value: "etc" },
         ],
       },
       validation: (r) => r.required(),

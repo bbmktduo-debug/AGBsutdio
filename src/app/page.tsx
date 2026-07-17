@@ -30,20 +30,21 @@ export default async function Home() {
   const heroVideoFiles: string[] = settings?.heroVideoFiles?.filter(Boolean) || [];
   const heroVideoSrc = heroVideoFiles.length > 0 ? null : (settings?.heroVideoFile || null);
 
+  // 히어로에 연결된 Works (Sanity에서 가져옴)
+  const heroLinkedWorks: Array<{ slug: string }> = settings?.heroLinkedWorks || [];
+
   return (
     <>
-      {/* ━━━ 슬로건 + 소개문구 ━━━ */}
-      <section className="pt-28 md:pt-44 pb-8 md:pb-10">
+      {/* ━━━ 슬로건 (국문 + 영문 각 1줄) ━━━ */}
+      <section className="pt-28 md:pt-40 pb-6 md:pb-8">
         <div className="container-page">
           <div className="max-w-3xl">
-            <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold tracking-tight leading-[1.15]">
-              Stories worth Sharing,
-              <br />
-              from Brands
-            </h1>
-            <p className="mt-4 text-[clamp(14px,1.5vw,16px)] text-ink/50 leading-relaxed">
-              브랜드의 이야기를 다큐멘터리의 방식으로 접근하고 기록합니다
+            <p className="text-[clamp(16px,2vw,20px)] font-semibold leading-snug tracking-tight">
+              브랜드에서 시작되는 이야기
             </p>
+            <h1 className="font-display text-[clamp(28px,4.5vw,44px)] font-semibold tracking-tight leading-[1.15] mt-1">
+              Stories worth Sharing, from Brands
+            </h1>
           </div>
         </div>
       </section>
@@ -53,9 +54,9 @@ export default async function Home() {
         <div className="container-page">
           <div className="relative aspect-[4/3] md:aspect-[16/7] overflow-hidden bg-bg-dark">
             {heroVideoFiles.length > 1 ? (
-              <HeroCarousel sources={heroVideoFiles} />
+              <HeroCarousel sources={heroVideoFiles} linkedWorks={heroLinkedWorks} />
             ) : heroVideoFiles.length === 1 ? (
-              <HeroVideo src={heroVideoFiles[0]} />
+              <HeroVideo src={heroVideoFiles[0]} linkedWork={heroLinkedWorks[0]?.slug} />
             ) : heroVideoSrc ? (
               <HeroVideo src={heroVideoSrc} />
             ) : (
@@ -67,12 +68,12 @@ export default async function Home() {
 
       {/* ━━━ WORKS 최신 3개 ━━━ */}
       <div className="container-page">
-        <div className="border-b border-ink my-12 md:my-16" />
+        <div className="border-b border-ink my-8 md:my-12" />
       </div>
 
-      <section className="pb-12 md:pb-16">
+      <section className="pb-8 md:pb-12">
         <div className="container-page">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-8">
             <h2 className="font-display text-[clamp(20px,3vw,28px)] font-semibold tracking-tight">
               WORKS
             </h2>
@@ -92,7 +93,9 @@ export default async function Home() {
                     ? "hover:bg-accent-doc/20"
                     : work.category === "social"
                       ? "hover:bg-accent-social/20"
-                      : "hover:bg-accent-branded/20";
+                      : work.category === "branded"
+                        ? "hover:bg-accent-branded/20"
+                        : "hover:bg-accent-etc/20";
                 return (
                   <Link
                     key={work._id}
@@ -130,7 +133,9 @@ export default async function Home() {
                             ? "bg-accent-doc"
                             : work.category === "social"
                               ? "bg-accent-social"
-                              : "bg-accent-branded"
+                              : work.category === "branded"
+                                ? "bg-accent-branded"
+                                : "bg-accent-etc"
                         }`}
                       >
                         {work.category}
@@ -153,9 +158,9 @@ export default async function Home() {
         <div className="border-b border-ink" />
       </div>
 
-      <section className="py-12 md:py-16">
+      <section className="py-8 md:py-12">
         <div className="container-page flex flex-col items-center text-center">
-          <p className="text-ink/50 mb-6">프로젝트 문의는 편하게 연락주세요</p>
+          <p className="text-ink/50 mb-5">프로젝트 문의는 편하게 연락주세요</p>
           <a
             href="mailto:contact@studio-egb.com"
             className="inline-block font-display text-xs tracking-[0.08em] uppercase px-10 py-3.5 border border-ink text-ink hover:bg-ink hover:text-bg transition-colors duration-200"

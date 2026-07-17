@@ -6,7 +6,10 @@ export async function getSiteSettings() {
     `*[_type == "siteSettings"][0] {
       heroVideoUrl,
       "heroVideoFile": heroVideo.asset->url,
-      "heroVideoFiles": heroVideos[].asset->url
+      "heroVideoFiles": heroVideos[].video.asset->url,
+      "heroLinkedWorks": heroVideos[]{
+        "slug": linkedWork->slug.current
+      }
     }`
   );
 }
@@ -36,6 +39,16 @@ export async function getFeaturedWorks() {
   return client.fetch(
     `*[_type == "work" && featured == true] | order(sortOrder asc) {
       _id, title, slug, client, category, thumbnail, year
+    }`
+  );
+}
+
+/* ── About Page ── */
+export async function getAboutPage() {
+  return client.fetch(
+    `*[_type == "aboutPage"][0] {
+      headline,
+      body
     }`
   );
 }

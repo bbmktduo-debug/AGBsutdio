@@ -1,6 +1,6 @@
 export default function ContactPage() {
   return (
-    <section className="pt-28 md:pt-36 pb-16 md:pb-24">
+    <section className="pt-28 md:pt-32 pb-10 md:pb-16">
       <div className="container-page">
         <h1 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-tight mb-10">
           CONTACT
@@ -74,7 +74,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="mt-16 pt-10 border-t border-ink/10 max-w-3xl">
+        <div className="mt-10 pt-8 border-t border-ink/10 max-w-3xl">
           <p className="text-ink/40 leading-relaxed">
             프로젝트 문의, 협업 제안 등 편하게 연락주세요.
           </p>

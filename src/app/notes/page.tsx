@@ -37,7 +37,7 @@ export default async function NotesPage({
 
   return (
     <>
-      <section className="pt-28 md:pt-36 pb-6">
+      <section className="pt-28 md:pt-32 pb-4">
         <div className="container-page">
           <h1 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-tight mb-6">
             NOTES

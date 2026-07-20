@@ -9,11 +9,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           {/* 좌: 로고 + 메뉴 */}
           <div className="flex flex-col gap-6">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/logo.png"
               alt="Studio EGB"
-              width={2881}
-              height={624}
               className="h-7 w-auto invert"
             />
             <div className="flex gap-6">

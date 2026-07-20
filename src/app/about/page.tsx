@@ -45,7 +45,7 @@ export default async function AboutPage() {
   return (
     <>
       {/* 헤드라인 */}
-      <section className="pt-28 md:pt-36 pb-8">
+      <section className="pt-28 md:pt-32 pb-6">
         <div className="container-page">
           <h1 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-tight">
             ABOUT
@@ -59,7 +59,7 @@ export default async function AboutPage() {
       </div>
 
       {/* WHO WE ARE */}
-      <section className="py-10 md:py-16">
+      <section className="py-8 md:py-12">
         <div className="container-page">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6 md:gap-12">
             <div>
@@ -96,7 +96,7 @@ export default async function AboutPage() {
       </div>
 
       {/* HOW WE WORK — 도식화 */}
-      <section className="py-10 md:py-16">
+      <section className="py-8 md:py-12">
         <div className="container-page">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6 md:gap-12">
             <div>

@@ -13,9 +13,14 @@ export default function Footer() {
       <div className="container-page py-14 md:py-20">
         {/* 로고 */}
         <div className="mb-10">
-          <span className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
-            studio egb
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-white.png"
+            alt="Studio EGB"
+            width={150}
+            height={32}
+            className="block w-[150px]"
+          />
         </div>
 
         {/* 네비게이션 */}

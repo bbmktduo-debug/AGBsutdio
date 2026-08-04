@@ -3,7 +3,7 @@ import { client } from "./client";
 /* ── Site Settings ── */
 export async function getSiteSettings() {
   return client.fetch(
-    `*[_type == "siteSettings"][0] {
+    `*[_id == "siteSettings" || _type == "siteSettings"][0] {
       heroVideoUrl,
       "heroVideoFile": heroVideo.asset->url,
       "heroVideoFiles": heroVideos[].video.asset->url,

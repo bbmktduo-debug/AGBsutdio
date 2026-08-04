@@ -28,9 +28,10 @@ export default defineType({
             }),
           ],
           preview: {
-            select: { title: "linkedWork.title" },
-            prepare: ({ title }) => ({
-              title: title || "연결 없음",
+            select: { title: "linkedWork.title", videoFileName: "video.asset.originalFilename" },
+            prepare: ({ title, videoFileName }) => ({
+              title: title || "연결된 작업물 없음",
+              subtitle: videoFileName || "영상 미등록",
             }),
           },
         },

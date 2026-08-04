@@ -9,29 +9,6 @@ export default defineConfig({
   projectId: "bpxy2drf",
   dataset: "production",
   basePath: "/studio",
-  plugins: [
-    structureTool({
-      structure: (S) =>
-        S.list()
-          .title("콘텐츠")
-          .items([
-            // 사이트 설정 — 싱글톤 (1개만 표시)
-            S.listItem()
-              .title("사이트 설정")
-              .id("siteSettings")
-              .child(
-                S.document()
-                  .schemaType("siteSettings")
-                  .documentId("siteSettings")
-                  .title("사이트 설정")
-              ),
-            // 나머지 문서 타입 (siteSettings 제외)
-            ...S.documentTypeListItems().filter(
-              (listItem) => listItem.getId() !== "siteSettings"
-            ),
-          ]),
-    }),
-    visionTool(),
-  ],
+  plugins: [structureTool(), visionTool()],
   schema: { types: schemaTypes },
 });

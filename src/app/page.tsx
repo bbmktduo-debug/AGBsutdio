@@ -36,7 +36,7 @@ export default async function Home() {
   return (
     <>
       {/* ━━━ 슬로건 (국문 + 영문 각 1줄) ━━━ */}
-      <section className="pt-32 md:pt-36 pb-4 md:pb-6">
+      <section className="pt-36 md:pt-40 pb-4 md:pb-6">
         <div className="container-page">
           <div className="max-w-3xl">
             <p className="text-[clamp(16px,2vw,20px)] font-semibold leading-snug tracking-tight">

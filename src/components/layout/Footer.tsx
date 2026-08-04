@@ -11,12 +11,12 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo.png"
+              src="/logo-white.png"
               alt="Studio EGB"
-              width={2881}
-              height={624}
-              className="h-8 w-auto invert"
-              style={{ aspectRatio: '2881 / 624' }}
+              width={384}
+              height={83}
+              className="h-8 w-auto"
+              style={{ aspectRatio: '384 / 83' }}
             />
             <div className="flex gap-6">
               <Link href="/about" className="text-xs text-on-dark/40 hover:text-on-dark transition-colors font-display tracking-[0.06em] uppercase">

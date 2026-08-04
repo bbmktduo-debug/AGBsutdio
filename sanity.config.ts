@@ -25,13 +25,9 @@ export default defineConfig({
                   .documentId("siteSettings")
                   .title("사이트 설정")
               ),
-            S.divider(),
             // 나머지 문서 타입 (siteSettings 제외)
             ...S.documentTypeListItems().filter(
-              (item) => {
-                const id = item.getId();
-                return id && id !== "siteSettings";
-              }
+              (listItem) => listItem.getId() !== "siteSettings"
             ),
           ]),
     }),

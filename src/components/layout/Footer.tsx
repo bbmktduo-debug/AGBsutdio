@@ -13,7 +13,10 @@ export default function Footer() {
             <img
               src="/logo.png"
               alt="Studio EGB"
-              className="h-7 w-auto invert"
+              width={2881}
+              height={624}
+              className="h-8 w-auto invert"
+              style={{ aspectRatio: '2881 / 624' }}
             />
             <div className="flex gap-6">
               <Link href="/about" className="text-xs text-on-dark/40 hover:text-on-dark transition-colors font-display tracking-[0.06em] uppercase">

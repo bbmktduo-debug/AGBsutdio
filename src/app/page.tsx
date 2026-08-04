@@ -36,7 +36,7 @@ export default async function Home() {
   return (
     <>
       {/* ━━━ 슬로건 (국문 + 영문 각 1줄) ━━━ */}
-      <section className="pt-28 md:pt-32 pb-4 md:pb-6">
+      <section className="pt-32 md:pt-36 pb-4 md:pb-6">
         <div className="container-page">
           <div className="max-w-3xl">
             <p className="text-[clamp(16px,2vw,20px)] font-semibold leading-snug tracking-tight">
@@ -153,22 +153,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ━━━ Contact 버튼 ━━━ */}
-      <div className="container-page">
-        <div className="border-b border-ink" />
-      </div>
-
-      <section className="py-6 md:py-8">
-        <div className="container-page flex flex-col items-center text-center">
-          <p className="text-ink/50 mb-5">프로젝트 문의는 편하게 연락주세요</p>
-          <a
-            href="mailto:contact@studio-egb.com"
-            className="inline-block font-display text-xs tracking-[0.08em] uppercase px-10 py-3.5 border border-ink text-ink hover:bg-ink hover:text-bg transition-colors duration-200"
-          >
-            CONTACT US
-          </a>
-        </div>
-      </section>
     </>
   );
 }

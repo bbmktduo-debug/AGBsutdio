@@ -47,12 +47,10 @@ export default function ContactPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
-                서울특별시 성동구 연무정13길 8
+                서울특별시 성동구 연무장13길 8
               </p>
             </div>
-          </div>
 
-          <div className="space-y-6">
             <div>
               <p className="font-display text-xs tracking-[0.08em] uppercase text-ink/30 mb-2">
                 INSTAGRAM

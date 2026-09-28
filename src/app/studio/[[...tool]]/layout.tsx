@@ -1,5 +1,6 @@
 export const metadata = {
-  title: "스튜디오에그비 — 어드민",
+  title: { absolute: "스튜디오에그비 — 어드민" },
+  robots: { index: false, follow: false },
 };
 
 export default function StudioLayout({

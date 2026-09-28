@@ -3,6 +3,13 @@ import Image from "next/image";
 import { getNotes, getNoteCategories } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import NoteCategoryFilter from "@/components/note/NoteCategoryFilter";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Notes",
+  description: "스튜디오에그비의 노트. 브랜드 콘텐츠와 영상 제작에 대한 생각과 기록.",
+  alternates: { canonical: "/notes" },
+};
 
 type Note = {
   _id: string;

@@ -3,6 +3,14 @@ import Image from "next/image";
 import { getWorks } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import CategoryFilter from "@/components/work/CategoryFilter";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Works",
+  description:
+    "스튜디오에그비의 작업물. 브랜드 다큐멘터리, 소셜 콘텐츠, 브랜디드 영상 포트폴리오.",
+  alternates: { canonical: "/work" },
+};
 
 type Work = {
   _id: string;

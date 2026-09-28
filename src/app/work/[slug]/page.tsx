@@ -3,6 +3,8 @@ import { urlFor } from "@/lib/sanity/image";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
+import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 
 type Work = {
   _id: string;
@@ -15,7 +17,62 @@ type Work = {
   description?: PortableTextBlock[];
   stills?: { asset: { _ref: string } }[];
   featured?: boolean;
+  thumbnail?: { asset: { _ref: string } };
+  plainDescription?: string;
+  _createdAt?: string;
 };
+
+const CATEGORY_LABEL: Record<string, string> = {
+  documentary: "Documentary",
+  social: "Social",
+  branded: "Branded",
+  etc: "Etc",
+};
+
+function summarize(text: string | undefined, max = 155) {
+  const t = (text || "").replace(/\s+/g, " ").trim();
+  if (!t) return "";
+  return t.length > max ? `${t.slice(0, max - 1)}…` : t;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const work: Work | null = await getWork(slug);
+  if (!work) return { title: "작업물을 찾을 수 없습니다" };
+
+  const parts = [work.client, CATEGORY_LABEL[work.category] || work.category, work.year]
+    .filter(Boolean)
+    .join(" · ");
+  const description =
+    summarize(work.plainDescription) ||
+    `${work.title}${parts ? ` — ${parts}` : ""}. 스튜디오에그비가 제작한 브랜드 영상.`;
+  const ogImage = work.thumbnail
+    ? urlFor(work.thumbnail).width(1200).height(630).url()
+    : undefined;
+
+  return {
+    title: work.title,
+    description,
+    alternates: { canonical: `/work/${slug}` },
+    openGraph: {
+      type: "article",
+      title: work.title,
+      description,
+      url: `${SITE_URL}/work/${slug}`,
+      ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630 }] } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: work.title,
+      description,
+      ...(ogImage ? { images: [ogImage] } : {}),
+    },
+  };
+}
 
 function getYouTubeId(url: string): string | null {
   const match = url.match(
@@ -54,8 +111,34 @@ export default async function WorkDetailPage({
 
   const videoId = work.youtubeUrl ? getYouTubeId(work.youtubeUrl) : null;
 
+  const videoJsonLd = videoId
+    ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: work.title,
+        description:
+          summarize(work.plainDescription, 300) ||
+          `${work.title} — 스튜디오에그비 제작 브랜드 영상`,
+        thumbnailUrl: [
+          work.thumbnail
+            ? urlFor(work.thumbnail).width(1280).height(720).url()
+            : `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+        ],
+        uploadDate: work._createdAt,
+        embedUrl: `https://www.youtube.com/embed/${videoId}`,
+        contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
+        publisher: { "@id": `${SITE_URL}/#organization` },
+      }
+    : null;
+
   return (
     <section className="pt-32 md:pt-40 pb-24 md:pb-40">
+      {videoJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+        />
+      )}
       <div className="container-page max-w-4xl">
         {/* 제목 */}
         <h1 className="font-display text-[clamp(24px,4vw,40px)] font-semibold tracking-tight leading-tight">

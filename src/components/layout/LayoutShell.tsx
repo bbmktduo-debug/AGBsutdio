@@ -3,11 +3,14 @@
 import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
+import type { ContactInfo } from "@/lib/site";
 
 export default function LayoutShell({
   children,
+  contact,
 }: {
   children: React.ReactNode;
+  contact: ContactInfo;
 }) {
   const pathname = usePathname();
   const isStudio = pathname.startsWith("/studio");
@@ -18,9 +21,9 @@ export default function LayoutShell({
 
   return (
     <>
-      <Header />
+      <Header email={contact.email} />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <Footer contact={contact} />
     </>
   );
 }

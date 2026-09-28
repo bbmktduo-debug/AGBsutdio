@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ContactInfo } from "@/lib/site";
 
 const NAV = [
   { label: "ABOUT", href: "/about" },
@@ -7,7 +8,7 @@ const NAV = [
   { label: "CONTACT", href: "/contact" },
 ];
 
-export default function Footer() {
+export default function Footer({ contact }: { contact: ContactInfo }) {
   return (
     <footer className="bg-bg-dark text-on-dark">
       <div className="container-page py-14 md:py-20">
@@ -39,24 +40,24 @@ export default function Footer() {
         {/* 연락처 */}
         <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 text-sm text-on-dark/40 mb-10">
           <a
-            href="mailto:contact@studio-egb.com"
+            href={`mailto:${contact.email}`}
             className="hover:text-on-dark transition-colors"
           >
-            contact@studio-egb.com
+            {contact.email}
           </a>
           <a
-            href="tel:010-9177-9071"
+            href={`tel:${contact.phone.replace(/[^0-9+]/g, "")}`}
             className="hover:text-on-dark transition-colors"
           >
-            010-9177-9071
+            {contact.phone}
           </a>
           <a
-            href="https://instagram.com/studioegb"
+            href={contact.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-on-dark transition-colors"
           >
-            @studioegb
+            @{contact.instagramHandle}
           </a>
         </div>
 

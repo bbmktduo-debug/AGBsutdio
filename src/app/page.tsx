@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getFeaturedWorks, getWorks, getSiteSettings } from "@/lib/sanity/queries";
+import { getFeaturedWorks, getWorks, getSiteSettings, getSiteContentRaw } from "@/lib/sanity/queries";
+import { resolveSiteContent } from "@/lib/site";
 import { urlFor } from "@/lib/sanity/image";
 import HeroVideo, { HeroCarousel } from "@/components/video/HeroVideo";
 
@@ -17,11 +18,13 @@ type Work = {
 export const revalidate = 60;
 
 export default async function Home() {
-  const [featuredWorks, allWorks, settings] = await Promise.all([
+  const [featuredWorks, allWorks, settings, siteRaw] = await Promise.all([
     getFeaturedWorks() as Promise<Work[]>,
     getWorks() as Promise<Work[]>,
     getSiteSettings(),
+    getSiteContentRaw().catch(() => null),
   ]);
+  const site = resolveSiteContent(siteRaw);
 
   // featured가 있으면 featured, 없으면 최신 3개
   const displayWorks =
@@ -40,10 +43,10 @@ export default async function Home() {
         <div className="container-page">
           <div className="max-w-3xl">
             <p className="text-[clamp(16px,2vw,20px)] font-semibold leading-snug tracking-tight">
-              브랜드에서 시작되는 이야기
+              {site.heroTitleKo}
             </p>
             <h1 className="font-display text-[clamp(28px,4.5vw,44px)] font-semibold tracking-tight leading-[1.15] mt-1">
-              Stories worth Sharing, from Brands
+              {site.heroTitleEn}
             </h1>
           </div>
         </div>

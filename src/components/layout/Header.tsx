@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { label: "CONTACT", href: "/contact" },
 ];
 
-export default function Header() {
+export default function Header({ email }: { email: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -33,7 +33,7 @@ export default function Header() {
 
         {/* 데스크톱: Contact 버튼 (눈에 띄게) */}
         <a
-          href="mailto:contact@studio-egb.com"
+          href={`mailto:${email}`}
           className="hidden md:inline-flex items-center gap-2 font-display text-[13px] font-semibold tracking-[0.06em] uppercase px-5 py-2 bg-ink text-bg hover:bg-ink/80 transition-colors duration-200"
         >
           <span className="relative flex h-2 w-2">
@@ -103,7 +103,7 @@ export default function Header() {
             ))}
             {/* 모바일 Contact 버튼 */}
             <a
-              href="mailto:contact@studio-egb.com"
+              href={`mailto:${email}`}
               className="inline-flex items-center gap-2 font-display text-sm tracking-[0.08em] uppercase px-6 py-2.5 bg-ink text-bg mt-2"
             >
               <span className="relative flex h-2 w-2">

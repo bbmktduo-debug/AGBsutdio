@@ -14,6 +14,29 @@ export async function getSiteSettings() {
   );
 }
 
+/** 문구·연락처·SEO (어드민 "사이트 설정") */
+export async function getSiteContentRaw() {
+  return client.fetch(
+    `*[_type == "siteSettings"][0] {
+      heroTitleKo, heroTitleEn,
+      email, phone, address, instagramHandle, instagramUrl, contactMessage,
+      seoTitle, seoDescription, seoKeywords,
+      "ogImageUrl": ogImage.asset->url,
+      googleSiteVerification, naverSiteVerification
+    }`
+  );
+}
+
+/* ── Sitemap ── */
+export async function getSitemapEntries() {
+  return client.fetch(
+    `{
+      "works": *[_type == "work" && defined(slug.current)]{ "slug": slug.current, _updatedAt },
+      "notes": *[_type == "note" && published == true && defined(slug.current)]{ "slug": slug.current, _updatedAt }
+    }`
+  );
+}
+
 /* ── Work ── */
 export async function getWorks(category?: string) {
   const filter = category ? `&& category == $category` : "";
@@ -29,7 +52,8 @@ export async function getWork(slug: string) {
   return client.fetch(
     `*[_type == "work" && slug.current == $slug][0] {
       _id, title, slug, client, category, youtubeUrl, thumbnail,
-      year, description, stills, featured
+      year, description, stills, featured, _createdAt,
+      "plainDescription": pt::text(description)
     }`,
     { slug }
   );
@@ -48,7 +72,8 @@ export async function getAboutPage() {
   return client.fetch(
     `*[_type == "aboutPage"][0] {
       headline,
-      body
+      body,
+      processSteps[]{ step, desc }
     }`
   );
 }
@@ -98,9 +123,10 @@ export async function getNotes(categorySlug?: string) {
 export async function getNote(slug: string) {
   return client.fetch(
     `*[_type == "note" && slug.current == $slug][0] {
-      _id, title, slug, thumbnail, publishedAt, body,
+      _id, title, slug, thumbnail, publishedAt, body, _updatedAt,
       "categoryName": category->name,
-      "categoryColor": category->color
+      "categoryColor": category->color,
+      "plainBody": pt::text(body)
     }`,
     { slug }
   );

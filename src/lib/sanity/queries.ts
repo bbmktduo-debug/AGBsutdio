@@ -78,24 +78,6 @@ export async function getAboutPage() {
   );
 }
 
-/* ── Story (레거시, 유지) ── */
-export async function getStories() {
-  return client.fetch(
-    `*[_type == "story" && published == true] | order(publishedAt desc) {
-      _id, title, slug, coverImage, publishedAt
-    }`
-  );
-}
-
-export async function getStory(slug: string) {
-  return client.fetch(
-    `*[_type == "story" && slug.current == $slug][0] {
-      _id, title, slug, coverImage, publishedAt, body
-    }`,
-    { slug }
-  );
-}
-
 /* ── Note ── */
 export async function getNoteCategories() {
   return client.fetch(

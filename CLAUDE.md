@@ -100,27 +100,40 @@ studio-egb/
 ## 콘텐츠 모델 (Sanity 스키마 요약)
 
 - **Work:** 제목 / 슬러그 / 클라이언트 / 카테고리(Documentary·Social·Branded) / YouTube 링크 / 썸네일 / 제작연도 / 설명(rich) / 스틸컷[] / 대표작 여부 / 정렬순서
-- **Story:** 제목 / 슬러그 / 대표이미지 / 발행일 / 본문(rich) / 발행여부
+- **Note (노트):** 제목 / 슬러그 / 카테고리(→ Note Category) / 썸네일 / 발행일 / 본문(rich) / 발행여부 — 초기의 Story(에디토리얼)를 대체. Story 스키마는 2026-09-29 삭제
+- **Site Settings (사이트 설정):** 메인 화면(문구·히어로 영상) / 연락처 / 검색 노출(SEO: 제목·설명·키워드·OG 이미지·구글·네이버 인증 코드)
+- **About Page:** 소개글 / HOW WE WORK 단계
 
 > 필드 라벨은 비개발자가 보므로 한글로 정의한다 (예: `title: '제목'`). 전체 스펙은 PRD §7 참조.
 
-## 현재 진행 상황
+## 현재 진행 상황 (2026-09-29 기준)
+
+### 운영 정보
+- **사이트:** https://www.studio-egb.com · **어드민:** https://www.studio-egb.com/studio
+- **GitHub:** `bbmktduo-debug/AGBsutdio` — 항상 **bbmktduo-debug** 계정으로 푸시 (레포 로컬 git 설정에 고정됨)
+- **Vercel:** 팀 `bbs-projects-5bc69b21`, 프로젝트 **`ag-bsutdio`** 하나만 사용 (중복 프로젝트 `agb-sutdio`는 2026-09-29 삭제)
+- **Sanity:** 프로젝트 `bpxy2drf` / 데이터셋 `production`
 
 ### 완료
-- 기획 자료 정리, PRD 작성, 디자인 토큰 정의(DESIGN.md)
+- 06-10 초기 구축 (Next.js + Sanity, Home / Work 목록·상세 / About / Contact)
+- 07-10 ~ 08-04 클라이언트 피드백 1·2차 반영: 헤더·푸터·히어로 캐러셀, Notes 페이지 신설, About 어드민 편집, 여백 축소
+- 09-28 메인 문구·연락처·HOW WE WORK 어드민 편집 + 시드 스크립트(`scripts/seed-site-content.ts`, 실행 완료)
+- 09-28 SEO 메타·OG·구조화 데이터·robots·sitemap, 어드민 검색 노출 설정 연동
+- 09-28 파비콘 교체 (로고 기반)
+- 09-29 사용하지 않던 에디토리얼(story) 스키마 삭제
 
-### 다음 작업
-1. 레포·Next.js·Tailwind·Sanity 초기 세팅
-2. 디자인 토큰을 `globals.css` / `tailwind.config`에 반영
-3. 공통 레이아웃(Header/Footer/Nav) → Home → Work 목록·상세
-4. About / Stories / Contact
-5. SEO·성능·반응형 QA → Vercel 배포 → 클라이언트 CMS 교육
+### 진행 중
+- **구글·네이버 검색 등록:** 클라이언트가 직접 진행. 안내 가이드 → https://claude.ai/artifact/KCgH7NgygfBR4sME2UAT4t (비공개 상태 — 클라이언트에게 보내기 전 Share에서 공유 켜기)
+  - 가이드의 어드민 화면 3곳(사이드바 → 사이트 설정 / SEO 탭 / Publish 버튼)은 재현 목업. 실제 캡처를 받으면 교체 예정
 
-### 미결정 사항 (확인 필요)
-- **3번째 메뉴명:** `Stories`(잠정) / Editorial / Journal / Log
-- **Contact 문의 폼:** 포함(잠정) vs 정보 노출만
-- **Clash Display 라이선스:** 클라이언트 제공 폰트 파일 사용 vs Fontshare에서 다운로드 — 확정 시 폰트 경로 반영
+### 다음 할 일
+1. **테스트 콘텐츠 교체 (급함):** 작업물 4개("제목 테스트" 등), 노트 1개("노트 제목 예시"), 노트 카테고리 "category"가 실제 사이트에 노출 중이고 검색 노출(index)도 켜져 있음
+2. 사이트 설정 연락처(이메일 contact@studio-egb.com, 전화, 주소) 실제 정보 확인
+3. 콘텐츠 정리 후 클라이언트에게 검색 등록 가이드 전달
+
+### 미결정 사항
 - **분석 도구:** GA4 / Vercel Analytics 추가 여부
+- **Contact 문의 폼:** 현재 정보 노출만 (폼 없음)
 
 ## 주의사항
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/site";
+import { getYouTubeId } from "@/lib/youtube";
 
 type Work = {
   _id: string;
@@ -72,13 +73,6 @@ export async function generateMetadata({
       ...(ogImage ? { images: [ogImage] } : {}),
     },
   };
-}
-
-function getYouTubeId(url: string): string | null {
-  const match = url.match(
-    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^&?\s]+)/
-  );
-  return match ? match[1] : null;
 }
 
 const ptComponents = {

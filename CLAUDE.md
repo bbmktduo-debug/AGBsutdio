@@ -121,6 +121,7 @@ studio-egb/
 - 09-28 SEO 메타·OG·구조화 데이터·robots·sitemap, 어드민 검색 노출 설정 연동
 - 09-28 파비콘 교체 (로고 기반)
 - 09-29 사용하지 않던 에디토리얼(story) 스키마 삭제
+- 10-01 메인 히어로 YouTube 링크 표시 구현 (MP4 없을 때 배경 자동재생·자막 끔), 숨김 레거시 단일 영상(heroVideo) 사용 중단, 영상 업로드 칸에 "MP4만" 안내·YouTube 링크 검증 추가
 
 ### 진행 중
 - **구글·네이버 검색 등록:** 클라이언트가 직접 진행. 안내 가이드 → https://claude.ai/artifact/KCgH7NgygfBR4sME2UAT4t (비공개 상태 — 클라이언트에게 보내기 전 Share에서 공유 켜기)

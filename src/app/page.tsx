@@ -4,6 +4,8 @@ import { getFeaturedWorks, getWorks, getSiteSettings, getSiteContentRaw } from "
 import { resolveSiteContent } from "@/lib/site";
 import { urlFor } from "@/lib/sanity/image";
 import HeroVideo, { HeroCarousel } from "@/components/video/HeroVideo";
+import HeroYouTube from "@/components/video/HeroYouTube";
+import { getYouTubeId } from "@/lib/youtube";
 
 type Work = {
   _id: string;
@@ -30,8 +32,12 @@ export default async function Home() {
   const displayWorks =
     featuredWorks.length > 0 ? featuredWorks.slice(0, 3) : allWorks.slice(0, 3);
 
+  // 우선순위: 업로드한 MP4(복수) → YouTube 링크.
+  // 숨김 처리된 레거시 단일 영상(heroVideo)은 어드민에서 보이지도 지워지지도 않아 사용하지 않는다.
   const heroVideoFiles: string[] = settings?.heroVideoFiles?.filter(Boolean) || [];
-  const heroVideoSrc = heroVideoFiles.length > 0 ? null : (settings?.heroVideoFile || null);
+  const heroYouTubeId: string | null = settings?.heroVideoUrl
+    ? getYouTubeId(settings.heroVideoUrl)
+    : null;
 
   // 히어로에 연결된 Works (Sanity에서 가져옴)
   const heroLinkedWorks: Array<{ slug: string }> = settings?.heroLinkedWorks || [];
@@ -60,8 +66,8 @@ export default async function Home() {
               <HeroCarousel sources={heroVideoFiles} linkedWorks={heroLinkedWorks} />
             ) : heroVideoFiles.length === 1 ? (
               <HeroVideo src={heroVideoFiles[0]} linkedWork={heroLinkedWorks[0]?.slug} />
-            ) : heroVideoSrc ? (
-              <HeroVideo src={heroVideoSrc} />
+            ) : heroYouTubeId ? (
+              <HeroYouTube videoId={heroYouTubeId} />
             ) : (
               <div className="absolute inset-0 bg-bg-dark" />
             )}

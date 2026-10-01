@@ -5,7 +5,6 @@ export async function getSiteSettings() {
   return client.fetch(
     `*[_id == "siteSettings" || _type == "siteSettings"][0] {
       heroVideoUrl,
-      "heroVideoFile": heroVideo.asset->url,
       "heroVideoFiles": heroVideos[].video.asset->url,
       "heroLinkedWorks": heroVideos[]{
         "slug": linkedWork->slug.current

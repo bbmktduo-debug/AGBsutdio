@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { getYouTubeId } from "../../src/lib/youtube";
 
 export default defineType({
   name: "siteSettings",
@@ -40,7 +41,8 @@ export default defineType({
               name: "video",
               title: "영상 파일",
               type: "file",
-              options: { accept: "video/mp4" },
+              options: { accept: "video/mp4,.mp4" },
+              description: "MP4 파일만 올릴 수 있어요. MOV 등 다른 형식은 MP4로 변환해서 올려 주세요.",
             }),
             defineField({
               name: "linkedWork",
@@ -60,7 +62,7 @@ export default defineType({
         },
       ],
       description:
-        "메인 히어로에 순서대로 자동재생될 배경 영상들 (MP4). 각 영상에 작업물을 연결하면 클릭 시 해당 페이지로 이동합니다.",
+        "메인 히어로에 순서대로 자동재생될 배경 영상들. MP4 파일만 올릴 수 있어요 (MOV 불가). 각 영상에 작업물을 연결하면 클릭 시 해당 페이지로 이동합니다. 영상을 올리면 아래 YouTube 링크보다 우선 표시돼요.",
     }),
     defineField({
       name: "heroVideo",
@@ -76,7 +78,12 @@ export default defineType({
       title: "히어로 영상 (YouTube 링크)",
       type: "url",
       group: "hero",
-      description: "MP4가 없을 경우 대체용 YouTube 링크",
+      description:
+        "위에 올린 MP4 영상이 없을 때 메인에 배경으로 표시돼요 (소리 없이 자동재생·반복). 예: https://youtu.be/영상ID",
+      validation: (r) =>
+        r.custom((url?: string) =>
+          !url || getYouTubeId(url) ? true : "YouTube 영상 링크만 입력할 수 있어요 (youtu.be / youtube.com)"
+        ),
     }),
 
     /* ── 연락처 (Contact 페이지 · 헤더 · 푸터에 공통 사용) ── */

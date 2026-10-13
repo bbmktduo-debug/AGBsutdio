@@ -45,7 +45,6 @@ export default function HeroYouTube({ videoId }: { videoId: string }) {
         onLoad={hideCaptions}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none border-0 w-[max(100cqw,177.78cqh)] h-[max(100cqh,56.25cqw)]"
       />
-      <div className="absolute inset-0 bg-black/40" />
     </div>
   );
 }

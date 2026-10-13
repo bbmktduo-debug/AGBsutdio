@@ -59,7 +59,7 @@ export default async function AboutPage() {
             </div>
             <div className="max-w-2xl">
               {/* 하이라이트 문장 */}
-              <p className="text-[clamp(18px,2.2vw,24px)] font-bold leading-snug tracking-tight mb-6">
+              <p className="text-[clamp(18px,2.2vw,24px)] font-bold leading-snug tracking-tight mb-6 whitespace-pre-line">
                 &ldquo;{headline}&rdquo;
               </p>
 

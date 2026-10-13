@@ -34,7 +34,7 @@ export const DEFAULT_SITE: SiteContent = {
   heroTitleKo: "브랜드에서 시작되는 이야기",
   heroTitleEn: "Stories worth Sharing, from Brands",
   email: "contact@studio-egb.com",
-  phone: "010-9177-9071",
+  phone: "",
   address: "서울특별시 성동구 연무장13길 8",
   instagramHandle: "studioegb",
   instagramUrl: "https://instagram.com/studioegb",
@@ -107,7 +107,7 @@ export function resolveSiteContent(raw: RawSettings): SiteContent {
     heroTitleKo: pick(raw?.heroTitleKo, d.heroTitleKo),
     heroTitleEn: pick(raw?.heroTitleEn, d.heroTitleEn),
     email: pick(raw?.email, d.email),
-    phone: pick(raw?.phone, d.phone),
+    phone: pick(raw?.phone, d.phone), // 비우면 "" → 화면에 미표시
     address: pick(raw?.address, d.address),
     instagramHandle: handle,
     instagramUrl: pick(raw?.instagramUrl, `https://instagram.com/${handle}`),

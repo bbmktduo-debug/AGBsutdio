@@ -26,7 +26,6 @@ export default function HeroVideo({
       >
         <source src={src} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-black/40" />
     </div>
   );
 }
@@ -108,7 +107,6 @@ export function HeroCarousel({
           <source src={src} type="video/mp4" />
         </video>
       ))}
-      <div className="absolute inset-0 bg-black/40 z-[2] pointer-events-none" />
 
       {/* 좌우 화살표 */}
       {sources.length > 1 && (

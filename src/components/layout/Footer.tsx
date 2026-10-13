@@ -45,12 +45,14 @@ export default function Footer({ contact }: { contact: ContactInfo }) {
           >
             {contact.email}
           </a>
-          <a
-            href={`tel:${contact.phone.replace(/[^0-9+]/g, "")}`}
-            className="hover:text-on-dark transition-colors"
-          >
-            {contact.phone}
-          </a>
+          {contact.phone && (
+            <a
+              href={`tel:${contact.phone.replace(/[^0-9+]/g, "")}`}
+              className="hover:text-on-dark transition-colors"
+            >
+              {contact.phone}
+            </a>
+          )}
           <a
             href={contact.instagramUrl}
             target="_blank"

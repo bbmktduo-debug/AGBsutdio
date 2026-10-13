@@ -88,7 +88,7 @@ export default async function RootLayout({
         url: SITE_URL,
         logo: `${SITE_URL}/og-image.png`,
         email: site.email,
-        telephone: site.phone,
+        ...(site.phone ? { telephone: site.phone } : {}),
         address: {
           "@type": "PostalAddress",
           streetAddress: site.address,

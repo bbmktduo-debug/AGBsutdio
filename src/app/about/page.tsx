@@ -25,7 +25,7 @@ export const revalidate = 60;
 export default async function AboutPage() {
   const about = await getAboutPage();
 
-  const headline = about?.headline || FALLBACK_HEADLINE;
+  const headline = (about?.headline || FALLBACK_HEADLINE).trim();
   const hasBody = about?.body && about.body.length > 0;
   const steps: ProcessStep[] =
     about?.processSteps && about.processSteps.length > 0

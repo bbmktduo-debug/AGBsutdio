@@ -61,14 +61,8 @@ export default async function Home() {
       {/* ━━━ 히어로 ━━━ */}
       <section>
         <div className="container-page">
-          {/* YouTube는 화면 안 자막·인물이 잘리지 않도록 원본 비율(16:9) 그대로, MP4는 기존 크롭 비율 */}
-          <div
-            className={`relative overflow-hidden bg-bg-dark ${
-              heroVideoFiles.length === 0 && heroYouTubeId
-                ? "aspect-video"
-                : "aspect-[4/3] md:aspect-[16/7]"
-            }`}
-          >
+          {/* 영상 종류와 화면 크기에 관계없이 히어로를 16:9로 표시한다. */}
+          <div className="relative aspect-video overflow-hidden bg-bg-dark">
             {heroVideoFiles.length > 1 ? (
               <HeroCarousel sources={heroVideoFiles} linkedWorks={heroLinkedWorks} />
             ) : heroVideoFiles.length === 1 ? (

@@ -32,7 +32,7 @@ Vercel Hobby 플랜은 멤버 초대가 안 되므로 "프로젝트 이전" 대�
 | 4 | 클라이언트 | Vercel에서 Add New Project → 이전받은 저장소 Import, 환경변수 2개 입력 후 Deploy | vivien에게 임시 주소 공유 | 완료 |
 | 5 | vivien | Sanity 관리 화면에서 CORS origins에 임시 주소 추가 | 없음 | 완료 |
 | 6 | 둘 다 | 임시 주소에서 콘텐츠·이미지·Studio 동작 검수 | 통과하면 도메인 작업 시작 | 완료 |
-| 7 | vivien | 기존 Vercel 프로젝트에서 도메인 제거 | 클라이언트가 바로 다음 줄 진행 | 대기 |
+| 7 | vivien | 기존 Vercel 프로젝트에서 도메인 제거 | 클라이언트가 바로 다음 줄 진행 | 완료 |
 | 8 | 클라이언트 | 새 프로젝트 Settings → Domains에 studio-egb.com, www.studio-egb.com 추가 | 안내값과 DNS가 다르면 직접 DNS 변경 | 대기 |
 | 9 | 클라이언트 | 필요 시 Squarespace Domains(예전 Google Domains)에서 DNS 레코드 변경 | 반영 대기 (수 분에서 몇 시간) | 대기 |
 | 10 | 둘 다 | 실제 도메인으로 사이트 확인 | 문제없으면 정리 단계로 | 대기 |

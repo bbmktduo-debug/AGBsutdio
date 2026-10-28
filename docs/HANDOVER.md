@@ -35,7 +35,7 @@ Vercel Hobby 플랜은 멤버 초대가 안 되므로 "프로젝트 이전" 대�
 | 7 | vivien | 기존 Vercel 프로젝트에서 도메인 제거 | 클라이언트가 바로 다음 줄 진행 | 완료 |
 | 8 | 클라이언트 | 새 프로젝트 Settings → Domains에 studio-egb.com, www.studio-egb.com 추가 | 안내값과 DNS가 다르면 직접 DNS 변경 | 완료 |
 | 9 | 클라이언트 | 필요 시 Squarespace Domains(예전 Google Domains)에서 DNS 레코드 변경 | 반영 대기 (수 분에서 몇 시간) | 완료 (기존 DNS 유지, 변경 불필요) |
-| 10 | 둘 다 | 실제 도메인으로 사이트 확인 | 문제없으면 정리 단계로 | 진행 중 (접속·HTTPS·www 이동·관리자 로그인 확인, 푸시 후 자동 배포 확인 대기) |
+| 10 | 둘 다 | 실제 도메인으로 사이트 확인 | 문제없으면 정리 단계로 | 완료 |
 | 11 | vivien | 기존 Vercel 프로젝트 삭제, Sanity에서 클라이언트 역할 Administrator 확인 | 없음 | 대기 |
 
 ## 1단계 GitHub 저장소 이전

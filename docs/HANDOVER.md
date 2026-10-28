@@ -30,7 +30,7 @@ Vercel Hobby 플랜은 멤버 초대가 안 되므로 "프로젝트 이전" 대�
 | 2 | 클라이언트 | GitHub 메일 또는 알림에서 이전 수락 (1단계 상세 참고). 저장소가 클라이언트 계정으로 이동 | vivien에게 완료 알림 | 완료 |
 | 3 | 클라이언트 | Vercel 계정 생성 (GitHub studioEGB 계정으로 로그인) | 없음 | 완료 |
 | 4 | 클라이언트 | Vercel에서 Add New Project → 이전받은 저장소 Import, 환경변수 2개 입력 후 Deploy | vivien에게 임시 주소 공유 | 완료 |
-| 5 | vivien | Sanity 관리 화면에서 CORS origins에 임시 주소 추가 | 없음 | 대기 |
+| 5 | vivien | Sanity 관리 화면에서 CORS origins에 임시 주소 추가 | 없음 | 완료 |
 | 6 | 둘 다 | 임시 주소에서 콘텐츠·이미지·Studio 동작 검수 | 통과하면 도메인 작업 시작 | 대기 |
 | 7 | vivien | 기존 Vercel 프로젝트에서 도메인 제거 | 클라이언트가 바로 다음 줄 진행 | 대기 |
 | 8 | 클라이언트 | 새 프로젝트 Settings → Domains에 studio-egb.com, www.studio-egb.com 추가 | 안내값과 DNS가 다르면 직접 DNS 변경 | 대기 |

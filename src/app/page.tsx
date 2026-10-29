@@ -28,9 +28,9 @@ export default async function Home() {
   ]);
   const site = resolveSiteContent(siteRaw);
 
-  // featured가 있으면 featured, 없으면 최신 3개
+  // 대표작이 있으면 대표작, 없으면 전체 작업물에서 정렬순으로 최대 6개
   const displayWorks =
-    featuredWorks.length > 0 ? featuredWorks.slice(0, 3) : allWorks.slice(0, 3);
+    featuredWorks.length > 0 ? featuredWorks.slice(0, 6) : allWorks.slice(0, 6);
 
   // 우선순위: 업로드한 MP4(복수) → YouTube 링크.
   // 숨김 처리된 레거시 단일 영상(heroVideo)은 어드민에서 보이지도 지워지지도 않아 사용하지 않는다.
@@ -76,7 +76,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ━━━ WORKS 최신 3개 ━━━ */}
+      {/* ━━━ WORKS 최대 6개 ━━━ */}
       <div className="container-page">
         <div className="border-b border-ink my-8 md:my-12" />
       </div>
